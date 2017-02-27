@@ -15,6 +15,7 @@ module.exports = {
             name: req.body.name,
             username: req.body.username,
             email: req.body.email,
+            role: req.body.role,
             salt: salt,
             password: crypto.createHmac('sha256', salt)
                 .update(req.body.password)
@@ -29,7 +30,10 @@ module.exports = {
                 email: req.body.email
             }
         }).then((user) => {
-          var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
+          var token = jwt.sign({
+            foo: 'bar',
+            user_id: user.id 
+          }, 'shhhhh');
 
             if (user == null) {
                 console.log('Authentication success');

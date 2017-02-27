@@ -20,6 +20,7 @@ module.exports = {
       name: 'Diky Arga',
       username: 'dikyarga',
       email: 'dikyarga.id@gmail.com',
+      role: 'admin',
       salt: base64.encode('dikyarga.id@gmail.com'),
       password: crypto.createHmac('sha256', base64.encode('dikyarga.id@gmail.com'))
                      .update('secret')

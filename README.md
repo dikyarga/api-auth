@@ -24,11 +24,11 @@ Routes | HTTP | Description
 
 Routes | HTTP | Description
 --- | --- | ---
-**/api/users** | `GET` | Get all users
-**/api/users/:id** | `GET` | Get Single User
-**/api/users/** | `POST` | Create a user
-**/api/users/:id** | `DELETE` | Delete a user
-**/api/users/:id** | `PUT` | Update data of a user
+**/api/users** | `GET` | Get all users (admin only)
+**/api/users/:id** | `GET` | Get Single User (admin and authenticated user)
+**/api/users/** | `POST` | Create a user (admin only)
+**/api/users/:id** | `DELETE` | Delete a user  (admin only)
+**/api/users/:id** | `PUT` | Update data of a user (admin and authenticated user)
 **/api/users/:id** | `PATCH` | Update data of a user with specific new info
 
 ### Filter routes

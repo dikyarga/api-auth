@@ -1,18 +1,41 @@
 var jwt = require('jsonwebtoken');
+let db = require('../models')
 
-module.exports = function(req, res, next){
-  let token = req.headers.token
-  if(token){
-    // verify a token symmetric - synchronous
-    var decoded = jwt.verify(token, 'shhhhh');
-    console.log(decoded)
-    if (decoded) {
-
-      next()
-    } else {
-      res.send('Token not valid!')
+module.exports = {
+    auth: function(req, res, next) {
+        let token = req.headers.token
+        if (token) {
+            jwt.verify(token, 'shhhhh', function(err, decoded) {
+                console.log(decoded)
+                if (err) {
+                    res.send('Token not valid!')
+                } else {
+                    next()
+                }
+            });
+        } else {
+            res.send('Auth fail')
+        }
+    },
+    isAdmin: function(req, res, next){
+      let token = req.headers.token
+      if (token) {
+          jwt.verify(token, 'shhhhh', function(err, decoded) {
+              console.log('0----------', decoded)
+              if (err) {
+                  res.send('Token not valid!')
+              } else {
+                db.User.findById(decoded.user_id).then((user) => {
+                  if (user.role == 'admin') {
+                    next()
+                  } else {
+                    res.send('You are not admin!')
+                  }
+                })
+              }
+          });
+      } else {
+          res.send('No auth stored')
+      }
     }
-  } else {
-    res.send('Auth fail')
-  }
 }
