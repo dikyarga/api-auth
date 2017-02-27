@@ -11,4 +11,8 @@ router.get('/hello', function(req, res, next) {
   res.send('Print hello, ' + req.query.name + ' !')
 });
 
+router.post('/signup', function(req, res, next){
+  
+})
+
 module.exports = router;

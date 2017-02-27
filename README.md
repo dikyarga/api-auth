@@ -13,6 +13,13 @@ Routes | HTTP | Description
 --- | --- | ---
 **/api/hello?name={name}** | `GET` | Print hello, {name} !
 
+### AUTH API
+
+Routes | HTTP | Description
+--- | --- | ---
+**/api/signup** | `POST` | Signup a new user
+**/api/signin** | `POST` | User sign in and get credetial token after login
+
 ### User API
 
 Routes | HTTP | Description
