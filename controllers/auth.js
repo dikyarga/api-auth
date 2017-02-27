@@ -33,14 +33,18 @@ module.exports = {
 
             if (user == null) {
                 console.log('Authentication success');
-                res.send(token)
+                res.json({
+                  token: token
+                })
             } else {
                 const hash = crypto.createHmac('sha256', user.salt)
                     .update(req.body.password)
                     .digest('hex');
                 if (user.password == hash) {
                     console.log('Authentication success');
-                    res.send(token)
+                    res.json({
+                      token: token
+                    })
                 } else {
                     console.log('Authentication fail');
                     res.send('Authentication fail')
